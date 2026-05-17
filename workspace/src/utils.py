@@ -28,7 +28,10 @@ def build_dataloaders(
     train_ds, val_ds = random_split(
         dataset, [n_train, n_val], generator=torch.Generator().manual_seed(seed),
     )
-    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True, persistent_workers=(num_workers>0))
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True, persistent_workers=(num_workers>0)) # refer: https://docs.pytorch.org/tutorials/intermediate/pinmem_nonblock.html
     val_loader = DataLoader(val_ds, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True, persistent_workers=(num_workers>0))
 
     return train_loader, val_loader
+
+
+# Training utils
