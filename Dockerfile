@@ -47,10 +47,10 @@ ENV PATH="/opt/project/.venv/bin:${PATH}"
 # Install packages
 ########################################
 
-# Tensorboard
-RUN uv add tensorboard
+# Tensorboard & other utilities first to avoid CUDA related issues with RAPIDS
+RUN uv add tensorboard sentence-transformers pyyaml
 
-# RAPIDS first
+# RAPIDS packages with CUDA 12 support. See https://rapids.ai/start.html for more details on versions and compatibility.
 RUN uv pip install \
     --extra-index-url=https://pypi.nvidia.com \
     "cudf-cu12==26.4.*" \
