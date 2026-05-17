@@ -48,7 +48,7 @@ ENV PATH="/opt/project/.venv/bin:${PATH}"
 ########################################
 
 # Tensorboard & other utilities first to avoid CUDA related issues with RAPIDS
-RUN uv add tensorboard sentence-transformers pyyaml
+RUN uv add tensorboard sentence-transformers pyyaml notebook jupyterlab ipython ipykernel ipywidgets
 
 # RAPIDS packages with CUDA 12 support. See https://rapids.ai/start.html for more details on versions and compatibility.
 RUN uv pip install \

@@ -115,8 +115,8 @@ uv init
 uv venv --python 3.11.14
 source .venv/bin/activate
 
-# install tensorboard
-uv add tensorboard
+# install tensorboard & others before
+uv add tensorboard sentence-transformers pyyaml notebook jupyterlab ipython ipykernel ipywidgets
 
 # install rapids
 uv pip install \
@@ -129,7 +129,7 @@ uv pip install \
 # install torch
 uv install torch torchvision --index-url https://download.pytorch.org/whl/cu128
 
-# do it in this order: rapids -> torch
+# do it in this order: rapids -> torch -> other packages; this would mess up cuda dependency for rapids
 
 # **do NOT do** something like the following, which would update pandas version and potentially others, resulting rapids not working due to dependency conflicts
 # uv add jupyterlab ipython ipykernel ipywidgets
