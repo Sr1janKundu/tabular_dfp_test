@@ -1,0 +1,8 @@
+torch>=2.0
+torchvision
+scikit-learn
+pandas
+numpy
+sentence-transformers
+tensorboard
+pyyaml

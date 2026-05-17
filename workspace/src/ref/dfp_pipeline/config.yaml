@@ -1,0 +1,23 @@
+data:
+  val_fraction: 0.15
+  batch_size: 256
+  num_workers: 4        # set 0 on Windows / Jupyter
+
+model:
+  latent_dim: 32
+  hidden_dims: [256, 128, 64]
+  dropout: 0.2
+
+training:
+  epochs: 50
+  lr: 0.001
+  weight_decay: 0.00001
+  patience: 7
+  use_amp: false          # set true on CUDA for faster training
+  checkpoint_path: checkpoints/best.pth
+  log_dir: runs/dfp
+  histogram_every: 5      # log weight/grad histograms every N epochs
+
+inference:
+  batch_size: 512
+  threshold_quantile: 0.99   # 99th percentile of val recon error → threshold
