@@ -47,8 +47,8 @@ ENV PATH="/opt/project/.venv/bin:${PATH}"
 # Install packages
 ########################################
 
-# Tensorboard & other utilities first to avoid CUDA related issues with RAPIDS
-RUN uv add tensorboard sentence-transformers pyyaml notebook jupyterlab ipython ipykernel ipywidgets
+# ENV Var for UV 
+ENV UV_HTTP_TIMEOUT=2000
 
 # RAPIDS packages with CUDA 12 support. See https://rapids.ai/start.html for more details on versions and compatibility.
 RUN uv pip install \
@@ -69,6 +69,21 @@ RUN uv pip install \
 RUN uv pip install \
     torch torchvision \
     --index-url https://download.pytorch.org/whl/cu128
+
+# install jupyter and related packages
+RUN uv pip install \
+  notebook \
+  jupyterlab \
+  ipython \
+  ipykernel \
+  ipywidgets
+
+# Install ML packages with --no-deps
+RUN uv pip install --no-deps \
+  tensorboard \
+  sentence-transformers \
+  pyyaml \
+  prometheus-client
 
 ########################################
 # Workspace for mounted code
