@@ -1,3 +1,5 @@
+Testing repo for NVIDIA Morpheus DFP pipeline for tabular data, without using Morpheus.
+
 # Setup Dev Environment
 > Tested with Ubuntu 24.04.4 LTS
 
