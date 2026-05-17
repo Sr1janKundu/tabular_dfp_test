@@ -1,0 +1,33 @@
+services:
+  dfp_dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: dfp_dev
+
+    stdin_open: true
+    tty: true
+
+    network_mode: host
+
+    working_dir: /workspace
+
+    volumes:
+      - ./workspace:/workspace
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+
+    shm_size: "16gb"
+
+    restart: unless-stopped
